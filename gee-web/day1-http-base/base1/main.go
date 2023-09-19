@@ -1,5 +1,7 @@
 package main
 
+// 创建了一个 HTTP 服务器
+// 监听于本地的端口 9999
 // $ curl http://localhost:9999/
 // URL.Path = "/"
 // $ curl http://localhost:9999/hello
@@ -13,8 +15,11 @@ import (
 )
 
 func main() {
-	http.HandleFunc("/", indexHandler)
-	http.HandleFunc("/hello", helloHandler)
+	// HandleFunc注册一个处理器函数handler和对应的模式pattern。
+	http.HandleFunc("/", indexHandler)      //注册了一个处理根路径 "/" 的处理函数
+	http.HandleFunc("/hello", helloHandler) //注册了一个处理路径 "/hello" 的处理函数
+	// 启动了一个 HTTP 服务器，监听在本地的 9999 端口
+	// 如果出现错误，它会调用 log.Fatal() 来记录并退出程序
 	log.Fatal(http.ListenAndServe(":9999", nil))
 }
 
